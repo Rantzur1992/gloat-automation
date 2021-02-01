@@ -6,10 +6,14 @@ import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BaseTest {
 
     protected static WebDriver driver;
+    public Logger logger = LoggerFactory.getILoggerFactory()
+            .getLogger(BaseTest.class.getName());
 
     @BeforeClass
     public static void setTests() {
