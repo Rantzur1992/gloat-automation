@@ -3,8 +3,11 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class CareersPage {
 
@@ -12,6 +15,7 @@ public class CareersPage {
 
     public CareersPage(WebDriver driver) {
         this.driver = driver;
+        driver.navigate().to("https://x.gloat.com/careers/all");
         PageFactory.initElements(driver, this);
     }
 
@@ -22,6 +26,8 @@ public class CareersPage {
     private WebElement telAvivTitleTime;
     @FindBy(xpath = "(//p[contains(., 'positions')])[1]")
     private WebElement allOpenPositionsUI;
+    @FindBy(xpath = "//p[text()='ISRAEL']")
+    private WebElement israelText;
 
 
 
@@ -38,6 +44,12 @@ public class CareersPage {
     }
 
     public int calculateOpenPositions() {
-
+        return driver.findElements(By.xpath("//div[contains(@class, 'job-button')]")).size();
     }
+
+    public boolean isCountryTextPresent() {
+        return israelText.isDisplayed();
+    }
+
+
 }
