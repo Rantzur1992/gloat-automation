@@ -1,11 +1,13 @@
 package Pages;
 
+import Utils.Utils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,10 +32,16 @@ public class CareersPage {
     private WebElement allOpenPositionsUI;
     @FindBy(xpath = "//p[text()='ISRAEL']")
     private WebElement israelText;
-    @FindBy(xpath = "//p[text()='All locations']'")
+    @FindBy(xpath = "//div[@data-name='location-filter']")
     private WebElement allLocationsBtn;
 
 
+    public int  countTelAvivLocations() {
+        return driver.findElements(By.xpath("//p[contains(text(),'Tel-Aviv-Yafo, Israel') or contains(text(), 'Derech Menachem Begin')]")).size();
+    }
+    public void clickOnIsraelParagraph() {
+        israelText.click();
+    }
 
     public String getTimeFromUI () {
         return telAvivTitleTime.getText();
@@ -51,7 +59,7 @@ public class CareersPage {
         return driver.findElements(By.xpath("//div[contains(@class, 'job-button')]")).size();
     }
 
-    public int countAllVisibleCountries() {
+    public int countAllVisibleCities() {
         return driver.findElements(By.xpath("//h2[contains(@class, 'box-title')]")).size();
     }
 
@@ -78,6 +86,14 @@ public class CareersPage {
             elementsMap.put(element.getText(), element);
         elementsMap.get(city).click();
     }
+
+    public int countGoToJobIcon() {
+        Utils.sleep(2000); // The page loads the elements in sequence, this sleep waits for all this elements to load before Counting.
+        List<WebElement> elements = driver.findElements(By.xpath("//i[text()='chevron_right']"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elements.get(0));
+        return elements.size() - 1;
+    }
+
 
 
 }

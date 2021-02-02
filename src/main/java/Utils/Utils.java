@@ -9,4 +9,12 @@ public class Utils {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         return sdf.format(cal.getTime()).toUpperCase();
     }
+
+    public static void sleep(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            System.out.println("Failed to sleep thread");
+        }
+    }
 }
