@@ -20,10 +20,9 @@ public class BaseTest {
     @BeforeClass
     public static void setTests() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--kiosk");
+        //options.addArguments("--kiosk"); No need to run full screen
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
     }
 
 

@@ -88,7 +88,7 @@ public class CareersPage {
     }
 
     public int countGoToJobIcon() {
-        Utils.sleep(2000); // The page loads the elements in sequence, this sleep waits for all this elements to load before Counting.
+        Utils.sleep(4000); // The page loads the elements in sequence, this sleep waits for all this elements to load before Counting. (webDriver wait did not help here)
         List<WebElement> elements = driver.findElements(By.xpath("//i[text()='chevron_right']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", elements.get(0));
         return elements.size() - 1;
